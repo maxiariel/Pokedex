@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { IPokemonData } from "../../types";
 import pokeball from ".//pokeball.svg";
 import {
@@ -36,6 +36,7 @@ export default function Card() {
   const { id }: any = useParams();
   const [pokemon, setPokemon] = useState<IPokemonData>();
   const [currentId, setCurrentId] = useState<number>(parseInt(id));
+  const navigate = useNavigate()
 
   const pokeId = id?.toString().replace(/^0+/, "");
   const pokemonId = pokeId?.toString().padStart(3, "0");
@@ -52,14 +53,22 @@ export default function Card() {
     // eslint-disable-next-line react-hooks/exhaustive-deps    
   }, [id]);
 
-  const handleCLickNext = () => {
-
-    setCurrentId((nextId):number =>  nextId + 1  );
+  const handleCLickNext = async () => {
+    const nextId = currentId + 1;
+    setCurrentId(nextId);
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${nextId}`);
+    const data = await response.json();
+    setPokemon(data);
+    navigate(`/${nextId}`); // Navigate programmatically
   };
 
-  const handleClickPreviuos = () => {
-
-    setCurrentId((prevId):number=> prevId - 1);
+  const handleClickPreviuos = async () => {
+    const prevId = currentId - 1;
+    setCurrentId(prevId);
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${prevId}`);
+    const data = await response.json();
+    setPokemon(data);
+    navigate(`/${prevId}`); // Navigate programmatically
   };
 
   useEffect(()=>{
