@@ -114,8 +114,8 @@ export default function SearchPokemon({
           {showSortButton && (
             <ContentButton>
               <Text>Sort By</Text>
-              <Buttons onClick={sortByNumber}>Sort by Number</Buttons>
-              <Buttons onClick={sortByName}>Sort by Name</Buttons>
+              <Buttons onClick={sortByNumber}>Number</Buttons>
+              <Buttons onClick={sortByName}>Name</Buttons>
             </ContentButton>
           )}
         </Bar>
