@@ -55,6 +55,6 @@ export const Cards = Styled.div`
     @media (max-width: 912px){
         flex-direction:column;
         margin-top:25px;
-        height:75%;
+        height:90%;
     }
 `;
