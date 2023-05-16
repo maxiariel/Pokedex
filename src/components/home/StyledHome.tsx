@@ -5,6 +5,9 @@ export const Wrapper = Styled.div`
     justify-content:space-between;
     align-items:center;
     flex-wrap:wrap;
+    @media (max-width: 450px){
+        justify-content: space-around;
+    }
 `
 
 export const Card = Styled.div`
@@ -29,6 +32,19 @@ export const Card = Styled.div`
         background-color:#f5f5f5;
         z-index:-1;
     }
+    @media (max-width: 1100px){
+        width: 15%;
+        height: 8%;
+    }
+    @media (max-width: 746px){
+        width: 20%;
+        height: 10%;
+    }
+    @media (max-width: 450px){
+        width: 40%;
+        height: 15%;
+    }
+    
 `
 
 export const Content = Styled.div`  

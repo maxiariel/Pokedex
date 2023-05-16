@@ -87,7 +87,7 @@ export const ContentButton = Styled.div`
 position: absolute;
     display: flex;
     flex-direction: column;
-    top: 29%;
+    top: 22%;
     background: #DB092E;
     right: 0%;
     width: 18%;
@@ -95,6 +95,16 @@ position: absolute;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index:50;
+    @media (max-width: 1024px){
+        top: 29%;
+    }
+     @media (max-width: 912px){
+        top:178px;
+        height:170px;
+    }
+    @media (max-width: 412px){
+        width: 30%;
+    }
 `;
 
 export const Text = Styled.p`
