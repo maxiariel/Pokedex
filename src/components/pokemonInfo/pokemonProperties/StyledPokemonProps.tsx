@@ -14,10 +14,13 @@ export const ContentProps = Styled.div`
     @media (max-width: 912px){
         flex-direction:row;
         width:95%;
-        height:18%;
+        height:24%;
         align-items:center;
         border:none;
         font-size: 1.15rem;
+    }
+    @media (max-width: 768px){
+        font-size:1.03rem;
     }
     @media (max-width: 412px){
       font-size:1rem;
@@ -46,7 +49,7 @@ export const ContentAbilities = Styled.div`
         border:none;
     }
 
-`
+`;
 export const Description = Styled.p`
     border-bottom: 1px solid #a5a5a5;
     width: 25%;

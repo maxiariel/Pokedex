@@ -25,21 +25,29 @@ export const ContentStats = Styled.div`
       flex-direction:row;
       flex-wrap:wrap;
       width:95%;
-      height:40%;
+      height:35%;
       font-size:1.05rem;
+      margin:0 auto;
       
+    }
+    @media (max-width:768px){
+      font-size: 0.9rem;
+      color:#ffffff;
     }
     @media (max-width: 412px){
       font-size:0.9rem;
     }
 `;
 
-export const ContentBar= Styled.div`
+export const ContentBar = Styled.div`
   @media (max-width: 912px){
     width:45%;
     height:25%;
   }
-`
+  @media (max-width: 768px){
+    height:20%;
+  }
+`;
 
 export const ProgressBar = Styled.div`
   width: 100%;
@@ -50,8 +58,11 @@ export const ProgressBar = Styled.div`
   @media(max-width:912px){
     height: 25px;
   }
+  @media (max-width: 768px){
+    height: 20px;
+  }
   @media (max-width: 412px){
-      height:20px;
+      height:18px;
     }
 `;
 

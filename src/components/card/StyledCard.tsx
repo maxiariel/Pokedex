@@ -19,7 +19,7 @@ export const Wrapper = Styled.div`
     justify-content: center;
     align-items: center;
     @media (max-width: 912px){
-        align-items: flex-start;
+        align-items: center;
     }
 `;
 
@@ -54,7 +54,6 @@ export const Cards = Styled.div`
     
     @media (max-width: 912px){
         flex-direction:column;
-        margin-top:25px;
-        height:90%;
+        height:95%;
     }
 `;

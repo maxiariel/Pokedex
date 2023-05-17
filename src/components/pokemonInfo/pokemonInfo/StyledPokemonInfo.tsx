@@ -29,17 +29,23 @@ export const ContentName = Styled.div`
     width: 100%;
     height: 25%;
     align-items:center;
+    @media (max-width:768px){
+        padding-top: 10px;
+    }
 `;
 export const Name = Styled.p`
     margin-top: 0;
     font-size: 1.3rem;
-    color: #030303;
+    color: #ffffff;
     
     @media (max-width: 912px){
         font-size:2rem;
     }
+    @media (max-width: 768px){
+        font-size: 1.7rem;
+    }
     @media (max-width: 412px){
-        font-size:1.5rem;
+        font-size:1.3rem;
     }
 `;
 export const Icon = Styled.div`
@@ -54,6 +60,10 @@ export const Icon = Styled.div`
         font-size:3rem;
         padding-bottom:30px;
     }
+    @media (max-width: 768px){
+        font-size:2.5rem;
+        padding-bottom:25px;
+    }
     @media (max-width: 412px){
         font-size:2rem;
     }
@@ -66,6 +76,7 @@ export const ContentImg = Styled.div`
     align-items: baseline;
     @media (max-width: 912px){
         justify-content: space-evenly;
+        height:45%;
     }
 `;
 export const IconImg = Styled.div`
@@ -78,6 +89,9 @@ export const IconImg = Styled.div`
     }
     @media (max-width: 912px){
         font-size:2.3rem;
+    }
+    @media (max-width: 768px){
+        font-size:2rem;
     }
     @media (max-width: 412px){
         font-size:1.8rem;
@@ -109,6 +123,9 @@ export const Types = Styled.div<IColorType>`
     align-items: center;
     border-radius: 50px 50px 50px 50px;
     background-color: ${({ colorType }) => color[colorType] || "#ffffff"};
+    @media (max-width: 768px){
+        height: 25px;
+    }
     @media (max-width: 412px){
         height:20px;
     }
