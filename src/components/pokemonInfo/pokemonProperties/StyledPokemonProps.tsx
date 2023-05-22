@@ -29,8 +29,14 @@ export const ContentProps = Styled.div`
 `;
 
 export const Property = Styled.div`
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #b5b5b5;
     color: #a5a5a5;
+    font-size:1rem;
+    height: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     @media (max-width: 912px){
         width:30%;
         border:none;
@@ -38,24 +44,35 @@ export const Property = Styled.div`
     }
 `;
 export const ContentAbilities = Styled.div`
-    border-bottom: 1px solid #a5a5a5;
-    width: 25%;
+    width: 100%;
     margin: 0 auto;
-    padding-top: 10px;
-    padding-bottom: 3px;
     color: #030303;
+    height: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     @media (max-width: 912px){
         width:30%;
         border:none;
     }
-
 `;
+
+export const Ability = Styled.div`
+    display:flex;
+    width:100%;
+    justify-content: space-around;
+    @media (max-width: 1180px){
+        flex-direction: column;
+        
+    }
+
+`
 export const Description = Styled.p`
     border-bottom: 1px solid #a5a5a5;
     width: 25%;
     margin: 0 auto;
-    padding-top: 10px;
-    padding-bottom: 3px;
+    padding-bottom: 15px;
     color: #030303;
     @media (max-width: 912px){
         width:70%;

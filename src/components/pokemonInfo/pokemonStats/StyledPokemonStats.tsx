@@ -19,7 +19,7 @@ export const ContentStats = Styled.div`
     border: 1px solid #e5e5e5;
     margin-right: 3px;
     text-align: center;
-    color: #050505;
+    color: #ffffff;
     background-color: #b0b791;
     @media (max-width: 912px){
       flex-direction:row;
@@ -50,11 +50,12 @@ export const ContentBar = Styled.div`
 `;
 
 export const ProgressBar = Styled.div`
-  width: 100%;
-  height: 18px;
+  width: 98%;
+  height: 15px;
   border-radius: 6px;
   background-color: #e0e0de;
   overflow: hidden;
+  margin: 0 auto;
   @media(max-width:912px){
     height: 25px;
   }
@@ -73,7 +74,7 @@ export const Progress = Styled.div<IProgress & IColorType>`
   background-color: ${({ colorType }) => color[colorType] || "#ffffff"};
 `;
 
-const color: any = {
+const color: Record<string, string> = {
   normal: "#a8a090",
   fighting: "#a05038",
   flying: "#98a8f0",

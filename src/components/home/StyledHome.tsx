@@ -22,6 +22,13 @@ export const Card = Styled.div`
     margin: 5px;
     border-radius: 10px;
     position:relative;
+    &> a{
+        text-decoration:none;
+        color:#030303;
+        text-transform:capitalize;
+        text-align:center;
+    }
+
     ::before{
         content:"";
         position:absolute;
@@ -53,5 +60,9 @@ export const Content = Styled.div`
         color:#030303;
         text-transform:capitalize;
     }
+
+`
+export const NotFound = Styled.div`
+    
 
 `

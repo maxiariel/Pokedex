@@ -30,9 +30,6 @@ export const ContentBackground = Styled.div`
     height: 100vh;
     background-color: #e5e5e5;
     overflow: hidden;
-    @media (max-width: 768px){
-        overflow:visible;
-    }
 `;
 export const ImageBackground = Styled.img`
     width: 100%;

@@ -18,6 +18,7 @@ export const ContentTitle = Styled.div`
     align-items:center;
     color:white;
     font-size:1.4rem;
+    font-family: 'pokemon-solid';
 `;
 
 export const ContentIcon = Styled.div`
@@ -50,7 +51,7 @@ export const ContentSearch = Styled.div`
 export const ContentIconSearch = Styled.div`
     position: absolute;
     left: 25px;
-    top: 132px;
+    top: 128px;
     color: #DB092E;
 `;
 
@@ -79,7 +80,6 @@ export const BarButton = Styled.button`
     :hover{
         transform:scale(1.02);
         box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.7);
-        rotate:deg(180);
     }
 `;
 
@@ -87,7 +87,7 @@ export const ContentButton = Styled.div`
 position: absolute;
     display: flex;
     flex-direction: column;
-    top: 22%;
+    top: 172px;
     background: #DB092E;
     right: 0%;
     width: 18%;
@@ -95,12 +95,12 @@ position: absolute;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index:50;
-    @media (max-width: 1024px){
-        top: 29%;
-    }
      @media (max-width: 912px){
-        top:178px;
         height:170px;
+        width: 22%;
+    }
+    @media (max-width: 768px){
+        width:22%;
     }
     @media (max-width: 412px){
         width: 30%;
@@ -129,5 +129,9 @@ export const Buttons = Styled.button`
     :hover{
         transform:scale(1.02);
         box-shadow: 0px 0px 8px rgb(0, 0, 0, 0.7)
+    }
+    :focus{
+        background-color: #db092e;
+        color: #ffffff;
     }
 `;

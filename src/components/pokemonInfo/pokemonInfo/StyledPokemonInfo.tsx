@@ -79,10 +79,25 @@ export const ContentImg = Styled.div`
         height:45%;
     }
 `;
+
+export const Img = Styled.img`
+    object-fit: cover;
+    height: 100%;
+`;
+
+export const ContentIcon = Styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+`
+
 export const IconImg = Styled.div`
     font-size:1.5rem;
     padding-bottom: 20px;
     color: #ffffff;
+    margin:20px;
     &> a{
         color:white;
         text-decoration:none;
@@ -98,10 +113,8 @@ export const IconImg = Styled.div`
     }
 `;
 
-export const Img = Styled.img`
-    object-fit: cover;
-    height: 100%;
-`;
+
+
 export const ContentType = Styled.div`
     display: flex;
     width: 90%;
