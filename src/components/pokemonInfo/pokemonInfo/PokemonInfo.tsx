@@ -11,16 +11,15 @@ import {
   Img,
   ContentType,
   Types,
+  ContentIcon,
 } from "./StyledPokemonInfo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function PokemonInfo() {
-  const { id }: any = useParams();
+  const { id }= useParams<{id: string}>();
   const [pokemon, setPokemon] = useState<IPokemonData>();
-  const [currentId, setCurrentId] = useState<number>(parseInt(id));
+  const [currentId, setCurrentId] = useState<number>(parseInt(id || "1", 10));
   const navigate = useNavigate();
 
   const pokeId = id?.toString().replace(/^0+/, "");
@@ -57,7 +56,7 @@ export default function PokemonInfo() {
   };
 
   useEffect(() => {
-    setCurrentId(parseInt(id));
+    setCurrentId(parseInt(id || "1"));
   }, [id]);
 
   return (
@@ -72,7 +71,10 @@ export default function PokemonInfo() {
         <Name>#{pokemonId}</Name>
       </ContentName>
       <ContentImg>
-        <IconImg>
+        <Img src={`${pokemon?.sprites.front_default}`} alt={pokemon?.name} />
+      </ContentImg>
+      <ContentIcon>
+      <IconImg>
           {currentId > 1 ? (
             <Link to={`/${currentId}`}>
               <FontAwesomeIcon
@@ -85,7 +87,6 @@ export default function PokemonInfo() {
             <FontAwesomeIcon icon={faChevronLeft} style={{ display: "none" }} />
           )}
         </IconImg>
-        <Img src={`${pokemon?.sprites.front_default}`} alt={pokemon?.name} />
         <IconImg>
           {currentId < 151 ? (
             <Link to={`/${currentId}`}>
@@ -99,7 +100,7 @@ export default function PokemonInfo() {
             <FontAwesomeIcon icon={faChevronLeft} style={{ display: "none" }} />
           )}
         </IconImg>
-      </ContentImg>
+      </ContentIcon>
       <ContentType>
         {pokemon?.types.map((value: any, index: number) => {
           return (

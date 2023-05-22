@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { ContentProps, Property, Description, P, ContentAbilities } from "./StyledPokemonProps";
+import { ContentProps, Property, Description, P, ContentAbilities, Ability } from "./StyledPokemonProps";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWeightHanging } from "@fortawesome/free-solid-svg-icons";
 import { faRulerVertical } from "@fortawesome/free-solid-svg-icons";
 import { IPokemonData } from "../../../types";
 
 export default function PokemonProperties() {
-  const { id }: any = useParams();
+  const { id } = useParams();
   const [pokemon, setPokemon] = useState<IPokemonData>();
 
   const pokeId = id?.toString().replace(/^0+/, "");
@@ -38,9 +38,11 @@ export default function PokemonProperties() {
       </Property>
       <ContentAbilities>
         <Description>Moves</Description>
+        <Ability>
         {pokemon?.abilities.map((value, index: number) => {
           return <P key={index}>{value.ability.name}</P>;
         })}
+        </Ability>
       </ContentAbilities>
     </ContentProps>
   );
