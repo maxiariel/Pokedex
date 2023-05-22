@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IPokemonData } from "../../types";
-import pokeball from ".//pokeball.svg";
+import pokeball from "../../assets/pokeball.svg";
 import PokemonInfo from "../pokemonInfo/pokemonInfo/PokemonInfo";
 import PokemonProperties from "../pokemonInfo/pokemonProperties/PokemonProperties";
 import PokemonStats from "../pokemonInfo/pokemonStats/PokemonStats";
@@ -12,9 +12,11 @@ import {
   ContentBackground,
   ImageBackground,
 } from "./StyledCard";
+import { PokemonsContext } from "../../context/PokemonsContext";
 
 export default function Card() {
-  const { id }: any = useParams();
+  const { id } = useParams();
+  const { setIsCard } = useContext(PokemonsContext);
   const [pokemon, setPokemon] = useState<IPokemonData>();
 
   const pokeId = id?.toString().replace(/^0+/, "");
@@ -31,9 +33,21 @@ export default function Card() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
+
+
+  useEffect(()=>{
+    setIsCard(true)
+    return(()=>{
+      setIsCard(false)
+    })
+  }, [])
+
+  
   if (!pokemon) {
     return <Loading>Loading....</Loading>;
   }
+
+
 
   return (
     <Wrapper>
