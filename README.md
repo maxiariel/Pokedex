@@ -16,11 +16,11 @@ Star the application
 
 ### `npm start`
 
-##App State 
+## App State 
 
 Context API is used on this project. It provides a global state to the app.
 
-##Deploy
+## Deploy
 
 Live Demo on : `https://pokedex-theta-sooty.vercel.app/`
 
