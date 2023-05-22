@@ -2,8 +2,10 @@ import { useContext, useState } from "react";
 import { PokemonsContext } from "../../context/PokemonsContext";
 import { IPokemonData } from "../../types";
 import SearchPokemon from "../Search/SearchPokemon";
-import { Card, Content, Wrapper } from "./StyledHome";
-import { Link } from "react-router-dom";
+import { NotFound, Wrapper } from "./StyledHome";
+
+import PokemonMap from "../pokemonMap/PokemonMap";
+import PokemonFilter from "../pokemonFilter/PokemonFIlter";
 
 export default function Home() {
   const { pokemonData, setPokemonData } = useContext(PokemonsContext);
@@ -12,6 +14,12 @@ export default function Home() {
   const [filteredPokemon, setFilteredPokemon] = useState<IPokemonData[]>(
     pokemonData || []
   );
+
+  const notFoundPokemon = () => {
+    if (filteredPokemon.length === 0 && searchText) {
+      return <NotFound> Pokemon not Found</NotFound>;
+    }
+  };
 
   return (
     <>
@@ -24,55 +32,8 @@ export default function Home() {
         setSearchText={setSearchText}
       />
       <Wrapper>
-        {!searchText
-          ? pokemonData?.map((pokemon: IPokemonData) => {
-              return (
-                <Card key={pokemon.id}>
-                  <Content>
-                    <Link to={`/${pokemon.id}`}>
-                      <p>#{pokemon.id}</p>
-                    </Link>
-                  </Content>
-                  <Content>
-                    <Link to={`/${pokemon.id}`}>
-                      <img
-                        src={`${pokemon.sprites.front_default}`}
-                        alt={pokemon.name}
-                      />
-                    </Link>
-                  </Content>
-                  <Content>
-                    <Link to={`/${pokemon.id}`}>
-                      <p>{pokemon.name}</p>
-                    </Link>
-                  </Content>
-                </Card>
-              );
-            })
-          : filteredPokemon?.map((pokemon: IPokemonData) => {
-              return (
-                <Card key={pokemon.id}>
-                  <Content>
-                    <Link to={`/${pokemon.id}`}>
-                      <p>#{pokemon.id}</p>
-                    </Link>
-                  </Content>
-                  <Content>
-                    <Link to={`/${pokemon.id}`}>
-                      <img
-                        src={`${pokemon.sprites.front_default}`}
-                        alt={pokemon.name}
-                      />
-                    </Link>
-                  </Content>
-                  <Content>
-                    <Link to={`/${pokemon.id}`}>
-                      <p>{pokemon.name}</p>
-                    </Link>
-                  </Content>
-                </Card>
-              );
-            })}
+        {notFoundPokemon()}
+        {!searchText ? <PokemonMap /> : <PokemonFilter filteredPokemon={filteredPokemon}/>}
       </Wrapper>
     </>
   );
