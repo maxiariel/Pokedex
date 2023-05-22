@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { IPokemonData } from "../../types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -24,13 +24,30 @@ export default function SearchPokemon({
   setSearchText,
 }: IProps) {
   const [showSortButton, setShowSortButton] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const filteredData = pokemonData?.filter((pokemon: IPokemonData) => {
+      
       return pokemon.name.toLowerCase().includes(e.target.value.toLowerCase());
     });
     setSearchText(e.target.value);
-    setFilteredPokemon(filteredData);
+      setFilteredPokemon(filteredData);
+  };
+
+  const useClickOutside = (ref: React.RefObject<HTMLDivElement>, callback: () => void) => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        callback();
+      }
+    };
+  
+    useEffect(() => {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [ref, callback]);
   };
 
   const sortByNumber = () => {
@@ -87,6 +104,11 @@ export default function SearchPokemon({
   const handleClickButton = () => {
     return setShowSortButton(!showSortButton);
   };
+  const handleOutsideClick = () => {
+    setShowSortButton(false);
+  };
+
+  useClickOutside(ref, handleOutsideClick);
   return (
     <Wrapper>
       <Content>
@@ -112,7 +134,7 @@ export default function SearchPokemon({
           <FontAwesomeIcon icon={faBars} />
           </BarButton>
           {showSortButton && (
-            <ContentButton>
+            <ContentButton ref={ref}>
               <Text>Sort By</Text>
               <Buttons onClick={sortByNumber}>Number</Buttons>
               <Buttons onClick={sortByName}>Name</Buttons>
