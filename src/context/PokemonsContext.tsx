@@ -1,6 +1,11 @@
 import { createContext, useState, useEffect } from "react";
 import { IPokemonData } from "../types";
 import InfiniteScroll from "react-infinite-scroll-component";
+import {
+  ContentLoading,
+  LoadingPokemonCircle,
+  NoMoreContent,
+} from "./StyledLoading";
 
 interface IProps {
   children: React.ReactNode;
@@ -10,25 +15,25 @@ interface IPropsContext {
   pokemonData: IPokemonData[];
   setPokemonData: React.Dispatch<React.SetStateAction<IPokemonData[]>>;
   setIsPokemonMap: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsCard : React.Dispatch<React.SetStateAction<boolean>>;
+  setIsCard: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const PokemonsContext = createContext<IPropsContext>({
   pokemonData: [],
   setPokemonData: () => {},
-  setIsPokemonMap: ()=>{},
-  setIsCard: ()=>{}
+  setIsPokemonMap: () => {},
+  setIsCard: () => {},
 });
 
 export default function PokemonsProvider({ children }: IProps) {
   const [pokemonData, setPokemonData] = useState<IPokemonData[]>([]);
   const [hasMore, setHasMore] = useState(true);
-  const [isPokemonMap, setIsPokemonMap] = useState(true)
-  const [isCard, setIsCard] = useState(true)
+  const [isPokemonMap, setIsPokemonMap] = useState(true);
+  const [isCard, setIsCard] = useState(true);
   const limit = 10;
 
   const fetchPokemons = async () => {
-    const offset = pokemonData.length ;
+    const offset = pokemonData.length;
     const response = await fetch(
       `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
     );
@@ -47,9 +52,9 @@ export default function PokemonsProvider({ children }: IProps) {
       );
       return [...prevData, ...filteredPokemons];
     });
-    if(offset === 140){
-      setHasMore(false)
-    } 
+    if (offset >= 140) {
+      setHasMore(false);
+    }
   };
 
   useEffect(() => {
@@ -59,29 +64,21 @@ export default function PokemonsProvider({ children }: IProps) {
   const handleFetchMorePokemons = () => {
     fetchPokemons();
   };
-  const NoMorePokemon = ()=>{
-    if(!hasMore && isPokemonMap){
-      return(
-        <div>
+  const NoMorePokemon = () => {
+    if (!hasMore && isPokemonMap) {
+      return (
+        <NoMoreContent>
           <p>No more Pokemon to load.</p>
-        </div>
-      )
+        </NoMoreContent>
+      );
     }
-  }
-  const Loading = ()=>{
-    if(hasMore && !isCard){
-      return(
-        <div>
-          <p>Loading...</p>
-        </div>
-      )
-    }
-  }
+  };
+
   const value = {
     pokemonData,
     setPokemonData,
     setIsPokemonMap,
-    setIsCard
+    setIsCard,
   };
 
   return (
@@ -90,7 +87,11 @@ export default function PokemonsProvider({ children }: IProps) {
         dataLength={pokemonData.length}
         next={handleFetchMorePokemons}
         hasMore={hasMore}
-        loader={Loading()}
+        loader={
+          <ContentLoading>
+            <LoadingPokemonCircle />
+          </ContentLoading>
+        }
         endMessage={NoMorePokemon()}
       >
         {children}
