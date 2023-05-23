@@ -33,21 +33,16 @@ export default function Card() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
+  useEffect(() => {
+    setIsCard(true);
+    return () => {
+      setIsCard(false);
+    };
+  }, []);
 
-
-  useEffect(()=>{
-    setIsCard(true)
-    return(()=>{
-      setIsCard(false)
-    })
-  }, [])
-
-  
   if (!pokemon) {
     return <Loading>Loading....</Loading>;
   }
-
-
 
   return (
     <Wrapper>

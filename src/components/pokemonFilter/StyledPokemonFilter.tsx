@@ -1,4 +1,4 @@
-import Styled from "styled-components"
+import Styled from "styled-components";
 
 export const Card = Styled.div`
     display:flex;
@@ -42,7 +42,7 @@ export const Card = Styled.div`
         height: 15%;
     }
     
-`
+`;
 
 export const Content = Styled.div`  
     &> a{
@@ -51,4 +51,4 @@ export const Content = Styled.div`
         text-transform:capitalize;
     }
 
-`
+`;

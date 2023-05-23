@@ -2,9 +2,21 @@ import { useState, useEffect, useRef } from "react";
 import { IPokemonData } from "../../types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Icon } from "@iconify/react";
-import { Content, ContentIcon, ContentSearch, ContentTitle, Wrapper, ContentIconSearch, Bar, BarButton, ContentButton, Buttons, Text } from "./StyledSearch";
+import {
+  Content,
+  ContentIcon,
+  ContentSearch,
+  ContentTitle,
+  Wrapper,
+  ContentIconSearch,
+  Bar,
+  BarButton,
+  ContentButton,
+  Buttons,
+  Text,
+} from "./StyledSearch";
 
 interface IProps {
   filteredPokemon: IPokemonData[];
@@ -28,24 +40,26 @@ export default function SearchPokemon({
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const filteredData = pokemonData?.filter((pokemon: IPokemonData) => {
-      
       return pokemon.name.toLowerCase().includes(e.target.value.toLowerCase());
     });
     setSearchText(e.target.value);
-      setFilteredPokemon(filteredData);
+    setFilteredPokemon(filteredData);
   };
 
-  const useClickOutside = (ref: React.RefObject<HTMLDivElement>, callback: () => void) => {
+  const useClickOutside = (
+    ref: React.RefObject<HTMLDivElement>,
+    callback: () => void
+  ) => {
     const handleClickOutside = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
         callback();
       }
     };
-  
+
     useEffect(() => {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener("mousedown", handleClickOutside);
       };
     }, [ref, callback]);
   };
@@ -131,7 +145,7 @@ export default function SearchPokemon({
         />
         <Bar>
           <BarButton type="button" onClick={handleClickButton}>
-          <FontAwesomeIcon icon={faBars} />
+            <FontAwesomeIcon icon={faBars} />
           </BarButton>
           {showSortButton && (
             <ContentButton ref={ref}>

@@ -91,7 +91,7 @@ export const ContentIcon = Styled.div`
     align-items: center;
     width: 100%;
     height: 10%;
-`
+`;
 
 export const IconImg = Styled.div`
     font-size:1.5rem;
@@ -112,8 +112,6 @@ export const IconImg = Styled.div`
         font-size:1.8rem;
     }
 `;
-
-
 
 export const ContentType = Styled.div`
     display: flex;

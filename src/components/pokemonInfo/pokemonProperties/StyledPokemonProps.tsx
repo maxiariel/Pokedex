@@ -67,7 +67,7 @@ export const Ability = Styled.div`
         
     }
 
-`
+`;
 export const Description = Styled.p`
     border-bottom: 1px solid #a5a5a5;
     width: 25%;

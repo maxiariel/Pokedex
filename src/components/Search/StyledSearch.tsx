@@ -55,7 +55,6 @@ export const ContentIconSearch = Styled.div`
     color: #DB092E;
 `;
 
-
 export const Bar = Styled.div`
     display: flex;
     justify-content: center;
@@ -110,7 +109,7 @@ position: absolute;
 export const Text = Styled.p`
     text-align: center;
     color: white;
-`
+`;
 
 export const Buttons = Styled.button`
     width: 90%;

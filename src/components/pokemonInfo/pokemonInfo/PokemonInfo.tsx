@@ -14,10 +14,14 @@ import {
   ContentIcon,
 } from "./StyledPokemonInfo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function PokemonInfo() {
-  const { id }= useParams<{id: string}>();
+  const { id } = useParams<{ id: string }>();
   const [pokemon, setPokemon] = useState<IPokemonData>();
   const [currentId, setCurrentId] = useState<number>(parseInt(id || "1", 10));
   const navigate = useNavigate();
@@ -74,7 +78,7 @@ export default function PokemonInfo() {
         <Img src={`${pokemon?.sprites.front_default}`} alt={pokemon?.name} />
       </ContentImg>
       <ContentIcon>
-      <IconImg>
+        <IconImg>
           {currentId > 1 ? (
             <Link to={`/${currentId}`}>
               <FontAwesomeIcon

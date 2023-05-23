@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { ContentProps, Property, Description, P, ContentAbilities, Ability } from "./StyledPokemonProps";
+import {
+  ContentProps,
+  Property,
+  Description,
+  P,
+  ContentAbilities,
+  Ability,
+} from "./StyledPokemonProps";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWeightHanging } from "@fortawesome/free-solid-svg-icons";
 import { faRulerVertical } from "@fortawesome/free-solid-svg-icons";
@@ -39,9 +46,9 @@ export default function PokemonProperties() {
       <ContentAbilities>
         <Description>Moves</Description>
         <Ability>
-        {pokemon?.abilities.map((value, index: number) => {
-          return <P key={index}>{value.ability.name}</P>;
-        })}
+          {pokemon?.abilities.map((value, index: number) => {
+            return <P key={index}>{value.ability.name}</P>;
+          })}
         </Ability>
       </ContentAbilities>
     </ContentProps>

@@ -7,11 +7,10 @@ import { Card, Content } from "./StyledPokemonMap";
 export default function PokemonMap(): JSX.Element {
   const { pokemonData, setIsPokemonMap } = useContext(PokemonsContext);
 
-  useEffect(()=>{
-    setIsPokemonMap(true)
-    return (()=>
-    setIsPokemonMap(false))
-  },[])
+  useEffect(() => {
+    setIsPokemonMap(true);
+    return () => setIsPokemonMap(false);
+  }, []);
 
   return (
     <>
