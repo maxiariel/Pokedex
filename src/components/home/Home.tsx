@@ -17,7 +17,11 @@ export default function Home() {
 
   const notFoundPokemon = () => {
     if (filteredPokemon.length === 0 && searchText) {
-      return <NotFound> Pokemon not Found</NotFound>;
+      return (
+        <NotFound>
+          <p>Pokemon not Found</p>
+        </NotFound>
+      );
     }
   };
 
@@ -33,7 +37,11 @@ export default function Home() {
       />
       <Wrapper>
         {notFoundPokemon()}
-        {!searchText ? <PokemonMap /> : <PokemonFilter filteredPokemon={filteredPokemon}/>}
+        {!searchText ? (
+          <PokemonMap />
+        ) : (
+          <PokemonFilter filteredPokemon={filteredPokemon} />
+        )}
       </Wrapper>
     </>
   );
