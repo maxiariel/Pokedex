@@ -22,7 +22,7 @@ Context API is used on this project. It provides a global state to the app.
 
 ## Deploy
 
-Live Demo on : `https://pokedex-theta-sooty.vercel.app/`
+Live Demo on : https://pokedex-theta-sooty.vercel.app/
 
 ## Build with 
 
