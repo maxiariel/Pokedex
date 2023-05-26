@@ -26,9 +26,9 @@ Live Demo on : https://pokedex-theta-sooty.vercel.app/
 
 ## Build with 
 
-React
-TypeScript
-Styled Components
+* React
+* TypeScript
+* Styled Components
 
 
 ## Author 
