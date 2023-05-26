@@ -30,7 +30,7 @@ export default function PokemonsProvider({ children }: IProps) {
   const [hasMore, setHasMore] = useState(true);
   const [isPokemonMap, setIsPokemonMap] = useState(true);
   const [isCard, setIsCard] = useState(true);
-  const limit = 10;
+  const limit = 30;
 
   const fetchPokemons = async () => {
     const offset = pokemonData.length;
@@ -52,7 +52,7 @@ export default function PokemonsProvider({ children }: IProps) {
       );
       return [...prevData, ...filteredPokemons];
     });
-    if (offset >= 140) {
+    if (offset >= 120) {
       setHasMore(false);
     }
   };
