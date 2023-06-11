@@ -25,14 +25,13 @@ export default function PokemonInfo() {
   const [pokemon, setPokemon] = useState<IPokemonData>();
   const [currentId, setCurrentId] = useState<number>(parseInt(id || "1", 10));
   const navigate = useNavigate();
+  const urlInfo = process.env.REACT_APP_API_URL_INFO;
 
   const pokeId = id?.toString().replace(/^0+/, "");
   const pokemonId = pokeId?.toString().padStart(3, "0");
   useEffect(() => {
     const pokemonId = async () => {
-      const response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${pokeId}`
-      );
+      const response = await fetch(`${urlInfo}${pokeId}`);
       const data = await response.json();
       setPokemon(data);
     };
@@ -44,7 +43,7 @@ export default function PokemonInfo() {
   const handleCLickNext = async () => {
     const nextId = currentId + 1;
     setCurrentId(nextId);
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${nextId}`);
+    const response = await fetch(`${urlInfo}${nextId}`);
     const data = await response.json();
     setPokemon(data);
     navigate(`/${nextId}`); // Navigate programmatically
@@ -53,7 +52,7 @@ export default function PokemonInfo() {
   const handleClickPreviuos = async () => {
     const prevId = currentId - 1;
     setCurrentId(prevId);
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${prevId}`);
+    const response = await fetch(`${urlInfo}${prevId}`);
     const data = await response.json();
     setPokemon(data);
     navigate(`/${prevId}`); // Navigate programmatically

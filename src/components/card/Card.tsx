@@ -18,13 +18,12 @@ export default function Card() {
   const { id } = useParams();
   const { setIsCard } = useContext(PokemonsContext);
   const [pokemon, setPokemon] = useState<IPokemonData>();
+  const urlInfo = process.env.REACT_APP_API_URL_INFO;
 
   const pokeId = id?.toString().replace(/^0+/, "");
   useEffect(() => {
     const pokemonId = async () => {
-      const response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${pokeId}`
-      );
+      const response = await fetch(`${urlInfo}${pokeId}`);
       const data = await response.json();
       setPokemon(data);
     };
