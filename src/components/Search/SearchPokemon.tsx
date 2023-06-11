@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 import { IPokemonData } from "../../types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -20,11 +20,11 @@ import {
 
 interface IProps {
   filteredPokemon: IPokemonData[];
-  setFilteredPokemon: React.Dispatch<React.SetStateAction<IPokemonData[]>>;
+  setFilteredPokemon: Dispatch<SetStateAction<IPokemonData[]>>;
   pokemonData: IPokemonData[];
-  setPokemonData: React.Dispatch<React.SetStateAction<IPokemonData[]>>;
+  setPokemonData: Dispatch<SetStateAction<IPokemonData[]>>;
   searchText: string;
-  setSearchText: React.Dispatch<React.SetStateAction<string>>;
+  setSearchText: Dispatch<SetStateAction<string>>;
 }
 
 export default function SearchPokemon({
@@ -64,57 +64,27 @@ export default function SearchPokemon({
     }, [ref, callback]);
   };
 
-  const sortByNumber = () => {
-    if (searchText === "") {
-      const sortName = [...pokemonData].sort((a, b) => {
-        if (a.id < b.id) {
-          return -1;
-        }
-        if (a.id > b.id) {
-          return 1;
-        }
-        return 0;
-      });
-      setPokemonData(sortName);
-    } else {
-      const sortName = [...filteredPokemon].sort((a, b) => {
-        if (a.id < b.id) {
-          return -1;
-        }
-        if (a.id > b.id) {
-          return 1;
-        }
-        return 0;
-      });
-      setFilteredPokemon(sortName);
-    }
-  };
+  const sortPokemon = (sortBy:keyof IPokemonData) =>{
+    const targetData= searchText === "" ? pokemonData : filteredPokemon;
+    const sortedData = [...targetData].sort((a,b) =>{
+      if(a[sortBy] > b[sortBy]){
+        return 1
+      }
+      if(a[sortBy] < b[sortBy]){
+        return -1
+      }
+      return 0
+    })
+    searchText === "" ? setPokemonData(sortedData): setFilteredPokemon(sortedData)
+  }
 
-  const sortByName = () => {
-    if (searchText === "") {
-      const sortName = [...pokemonData].sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
-      });
-      setPokemonData(sortName);
-    } else {
-      const sortName = [...filteredPokemon].sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
-      });
-      setFilteredPokemon(sortName);
-    }
-  };
+  const sortByNumber= ()=>{
+    sortPokemon("id")
+  }
+
+  const sortByName = ()=>{
+    sortPokemon("name")
+  }
   const handleClickButton = () => {
     return setShowSortButton(!showSortButton);
   };
