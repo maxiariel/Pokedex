@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, Dispatch, SetStateAction } from "react";
 import { IPokemonData } from "../types";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
@@ -13,9 +13,9 @@ interface IProps {
 
 interface IPropsContext {
   pokemonData: IPokemonData[];
-  setPokemonData: React.Dispatch<React.SetStateAction<IPokemonData[]>>;
-  setIsPokemonMap: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsCard: React.Dispatch<React.SetStateAction<boolean>>;
+  setPokemonData: Dispatch<SetStateAction<IPokemonData[]>>;
+  setIsPokemonMap: Dispatch<SetStateAction<boolean>>;
+  setIsCard: Dispatch<SetStateAction<boolean>>;
 }
 
 export const PokemonsContext = createContext<IPropsContext>({
@@ -31,11 +31,12 @@ export default function PokemonsProvider({ children }: IProps) {
   const [isPokemonMap, setIsPokemonMap] = useState(true);
   const [isCard, setIsCard] = useState(true);
   const limit = 30;
+  const url = process.env.REACT_APP_API_URL_LIST
 
   const fetchPokemons = async () => {
     const offset = pokemonData.length;
     const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+      `${url}${limit}&offset=${offset}`
     );
     const data = await response.json();
     const newPokemons = await Promise.all(
@@ -63,6 +64,7 @@ export default function PokemonsProvider({ children }: IProps) {
 
   const handleFetchMorePokemons = () => {
     fetchPokemons();
+    setIsCard(false);
   };
   const NoMorePokemon = () => {
     if (!hasMore && isPokemonMap) {
@@ -88,9 +90,11 @@ export default function PokemonsProvider({ children }: IProps) {
         next={handleFetchMorePokemons}
         hasMore={hasMore}
         loader={
-          <ContentLoading>
-            <LoadingPokemonCircle />
-          </ContentLoading>
+          isCard ? null : (
+            <ContentLoading>
+              <LoadingPokemonCircle />
+            </ContentLoading>
+          )
         }
         endMessage={NoMorePokemon()}
       >
